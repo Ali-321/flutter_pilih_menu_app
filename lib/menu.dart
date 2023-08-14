@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_pilih_menu_app/detail_menu/d_menu.dart';
 import 'package:flutter_pilih_menu_app/makanan.dart';
 
 class Menu extends StatefulWidget {
@@ -105,14 +106,22 @@ class _MenuState extends State<Menu> {
                                     color: Colors.black54,
                                     decorationStyle: TextDecorationStyle.solid),
                               )),
-                          Container(
-                              alignment: Alignment.bottomRight,
-                              child: TextButton(
-                                  style: TextButton.styleFrom(
-                                    side: const BorderSide(width: 1.0),
-                                  ),
-                                  onPressed: () {},
-                                  child: Text('Pesan')))
+                          GestureDetector(
+                            child: Container(
+                                alignment: Alignment.bottomRight,
+                                child: TextButton(
+                                    style: TextButton.styleFrom(
+                                      side: const BorderSide(width: 1.0),
+                                    ),
+                                    onPressed: () {
+                                      DMenu(
+                                          gambar: items[index].gambar,
+                                          nama: items[index].nama,
+                                          harga: items[index].harga,
+                                          deskripsi: items[index].deskripsi);
+                                    },
+                                    child: Text('Pesan'))),
+                          )
                         ]),
                       ),
                     ],
