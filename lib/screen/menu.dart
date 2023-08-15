@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pilih_menu_app/detail_menu/d_menu.dart';
-import 'package:flutter_pilih_menu_app/makanan.dart';
+import 'package:flutter_pilih_menu_app/screen/detail_menu.dart';
+import 'package:flutter_pilih_menu_app/model/makanan.dart';
 
 class Menu extends StatefulWidget {
   const Menu({super.key});
@@ -18,10 +18,10 @@ class _MenuState extends State<Menu> {
         harga: 2000,
         deskripsi: 'Tempe yang Dibacem',
         gambar:
-            'https://img.kurio.network/9qUFQUaXmVxMwsEe4uNT8nezbnM=/1200x900/filters:quality(80)/https://kurio-img.kurioapps.com/21/02/16/c2a5f95d-badc-4fd3-8d81-cfed0801a6e8.jpe'),
+            'https://paxelmarket.co/wp-content/uploads/2021/08/tempe-bacem-keluarga-isi-10-pcs.jpg'),
     const Makanan(
         nama: 'Ayam Bakar',
-        harga: 5000,
+        harga: 1000,
         deskripsi: 'Ayam dibakar kecap',
         gambar:
             'https://img.kurio.network/9qUFQUaXmVxMwsEe4uNT8nezbnM=/1200x900/filters:quality(80)/https://kurio-img.kurioapps.com/21/02/16/c2a5f95d-badc-4fd3-8d81-cfed0801a6e8.jpe'),
@@ -30,31 +30,29 @@ class _MenuState extends State<Menu> {
         harga: 2000,
         deskripsi:
             'Ayam dipotong menjadi bagian kecil ditusuk dengan kayu dan dibakar',
-        gambar:
-            'https://img.kurio.network/9qUFQUaXmVxMwsEe4uNT8nezbnM=/1200x900/filters:quality(80)/https://kurio-img.kurioapps.com/21/02/16/c2a5f95d-badc-4fd3-8d81-cfed0801a6e8.jpe'),
+        gambar: 'https://kbu-cdn.com/dk/wp-content/uploads/sate-ayam.jpg'),
     const Makanan(
         nama: 'sate kambing',
         harga: 5000,
         deskripsi:
             'Kambing di potong menjadi bagian kecil ditusuk dengan kayu dan dibakar',
         gambar:
-            'https://img.kurio.network/9qUFQUaXmVxMwsEe4uNT8nezbnM=/1200x900/filters:quality(80)/https://kurio-img.kurioapps.com/21/02/16/c2a5f95d-badc-4fd3-8d81-cfed0801a6e8.jpe'),
+            'https://pict.sindonews.net/dyn/850/pena/news/2021/07/19/185/487252/bumbu-sate-kambing-kecap-pedas-ini-resep-lengkapnya-jrb.jpg'),
+    const Makanan(
+        nama: 'Sate Babi',
+        harga: 20000,
+        deskripsi:
+            'Babi di potong menjadi bagian kecil ditusuk dengan kayu dan dibakar',
+        gambar:
+            'https://i.pinimg.com/1200x/df/92/f9/df92f9e0814a5ce0af92aa9f85261827.jpg'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Pilih Menu')),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(8),
-            child: Container(
-              height: 80,
-              alignment: Alignment.bottomLeft,
-              child: const Text("Pilih Menu",
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
-            ),
-          ),
           Expanded(
             child: ListView.builder(
                 itemCount: items.length,
@@ -66,6 +64,7 @@ class _MenuState extends State<Menu> {
                     children: [
                       Container(
                           height: 130,
+                          width: 150,
                           child: Image(
                             image: NetworkImage(items[index].gambar),
                             fit: BoxFit.fill,
@@ -100,7 +99,7 @@ class _MenuState extends State<Menu> {
                               alignment: Alignment.bottomLeft,
                               padding: EdgeInsets.only(bottom: 12),
                               child: Text(
-                                '${items[index].harga}',
+                                'Rp ${items[index].harga}',
                                 style: const TextStyle(
                                     fontSize: 18,
                                     color: Colors.black54,
@@ -114,11 +113,16 @@ class _MenuState extends State<Menu> {
                                       side: const BorderSide(width: 1.0),
                                     ),
                                     onPressed: () {
-                                      DMenu(
-                                          gambar: items[index].gambar,
-                                          nama: items[index].nama,
-                                          harga: items[index].harga,
-                                          deskripsi: items[index].deskripsi);
+                                      //Navigator.of().removeUntil
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) => DMenu(
+                                                  gambar: items[index].gambar,
+                                                  nama: items[index].nama,
+                                                  harga: items[index].harga,
+                                                  deskripsi:
+                                                      items[index].deskripsi)));
                                     },
                                     child: Text('Pesan'))),
                           )

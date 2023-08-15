@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_pilih_menu_app/menu.dart';
+import 'package:flutter_pilih_menu_app/screen/menu.dart';
 
 void main() {
   runApp(const MyApp());
